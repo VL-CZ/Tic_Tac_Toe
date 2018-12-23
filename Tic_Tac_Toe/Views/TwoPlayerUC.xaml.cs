@@ -38,7 +38,7 @@ namespace Tic_Tac_Toe.Views
             pageVM.GameBoard.Place(id);
             if (pageVM.GameBoard.Winner != null)
             {
-                
+                MessageBox.Show($"Winner: {pageVM.GameBoard.Winner}");
             }
         }
     }
