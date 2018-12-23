@@ -29,7 +29,10 @@ namespace Tic_Tac_Toe.Views
             DataContext = pageVM;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ((Button)sender).Content = 'X';
 
-
+        }
     }
 }

@@ -20,22 +20,30 @@ namespace Tic_Tac_Toe.Models
         private char player = 'O';
 
         /// <summary>
+        /// character of empty filed
+        /// </summary>
+        private readonly char emptyFiled = ' ';
+
+        /// <summary>
         /// size of the game board
         /// </summary>
         private readonly int size;
 
         public GameBoard(int size)
         {
+            this.size = size;
+            Random random = new Random();
+
             for (int i = 0; i < size; i++)
             {
-                Board.Add(new ObservableCollection<char>());
+                var row = new ObservableCollection<char>();
 
                 for (int j = 0; j < size; j++)
                 {
-                    Board[i].Add('O');
+                    row.Add(emptyFiled);
                 }
+                Board.Add(row);
             }
-            this.size = size;
         }
 
         /// <summary>
@@ -45,7 +53,10 @@ namespace Tic_Tac_Toe.Models
         /// <param name="coord2"></param>
         public void Place(int coord1, int coord2)
         {
-            Board[coord1][coord2] = player;
+            if (Board[coord1][coord2] == emptyFiled)
+            {
+                Board[coord1][coord2] = player;
+            }
 
             SwitchPlayers();
         }
@@ -72,6 +83,11 @@ namespace Tic_Tac_Toe.Models
             return (coord1 >= 0) && (coord1 < size) && (coord2 >= 0) && (coord2 < size);
         }
 
+        /// <summary>
+        /// is this position inside game board?
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
         public bool IsInBoard(Point point)
         {
             return IsInBoard(point.Coord1, point.Coord2);

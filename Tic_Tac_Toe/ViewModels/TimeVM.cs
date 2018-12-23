@@ -13,7 +13,6 @@ namespace Tic_Tac_Toe.ViewModels
         {
             get
             {
-                minutes = minutes % 60;
                 return minutes;
             }
             set
@@ -28,12 +27,15 @@ namespace Tic_Tac_Toe.ViewModels
         {
             get
             {
-                seconds = seconds % 60;
-                return seconds;
+                return seconds % 60;
             }
             set
             {
                 seconds = value;
+                if (seconds % 60 == 0)
+                {
+                    Minutes++;
+                }
                 RaisePropertyChanged();
             }
         }
