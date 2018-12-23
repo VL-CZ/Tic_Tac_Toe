@@ -22,20 +22,23 @@ namespace Tic_Tac_Toe.Views
     /// </summary>
     public partial class TwoPlayerUC : UserControl
     {
-        private TwoPlayerVM pageVM = new TwoPlayerVM();
+        private TwoPlayerVM pageVM;
         public TwoPlayerUC()
         {
             InitializeComponent();
-            DataContext = pageVM;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            // assign pageVM
+            if (pageVM == null)
+                pageVM = (TwoPlayerVM)DataContext;
+
             string id = (sender as Button).Tag.ToString();
             pageVM.GameBoard.Place(id);
             if (pageVM.GameBoard.Winner != null)
             {
-                MessageBox.Show($"Winner: {pageVM.GameBoard.Winner}");
+                
             }
         }
     }
