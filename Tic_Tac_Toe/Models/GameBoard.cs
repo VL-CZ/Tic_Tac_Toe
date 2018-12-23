@@ -12,7 +12,7 @@ namespace Tic_Tac_Toe.Models
         /// <summary>
         /// game board
         /// </summary>
-        public ObservableCollection<ObservableCollection<char>> Board { get; } = new ObservableCollection<ObservableCollection<char>>();
+        public ObservableCollection<ObservableCollection<Cell>> Board { get; } = new ObservableCollection<ObservableCollection<Cell>>();
 
         /// <summary>
         /// character of current player
@@ -32,33 +32,60 @@ namespace Tic_Tac_Toe.Models
         public GameBoard(int size)
         {
             this.size = size;
-            Random random = new Random();
 
             for (int i = 0; i < size; i++)
             {
-                var row = new ObservableCollection<char>();
+                var row = new ObservableCollection<Cell>();
 
                 for (int j = 0; j < size; j++)
                 {
-                    row.Add(emptyFiled);
+                    row.Add(new Cell(emptyFiled));
                 }
                 Board.Add(row);
             }
         }
 
         /// <summary>
-        /// 
+        /// place X/O on field with coordinates
         /// </summary>
-        /// <param name="coord1"></param>
-        /// <param name="coord2"></param>
+        /// <param name="coord1">coordinates of field</param>
+        /// <param name="coord2">coordinates of field</param>
         public void Place(int coord1, int coord2)
         {
-            if (Board[coord1][coord2] == emptyFiled)
+            if (Board[coord1][coord2].Content == emptyFiled)
             {
-                Board[coord1][coord2] = player;
+                Board[coord1][coord2] = new Cell(player);
             }
 
             SwitchPlayers();
+        }
+
+        /// <summary>
+        /// place X/O on field 
+        /// </summary>
+        /// <param name="coord1">coordinates of field</param>
+        /// <param name="coord2">coordinates of field</param>
+        public void Place(string id)
+        {
+            Point point = Find(id);
+            Place(point.Coord1, point.Coord2);
+        }
+
+        /// <summary>
+        /// find array with specified ID in board
+        /// </summary>
+        /// <param name="id"></param>
+        private Point Find(string id)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    if (Board[i][j].Id == id)
+                        return new Point(i, j);
+                }
+            }
+            return null;
         }
 
         /// <summary>
@@ -170,7 +197,7 @@ namespace Tic_Tac_Toe.Models
                 {
                     int c1 = list[i].Coord1;
                     int c2 = list[i].Coord2;
-                    values.Add(Board[c1][c2]);
+                    values.Add(Board[c1][c2].Content);
                 }
                 if (values.All(x => x == values[0]) && (values[0] == 'O' || values[0] == 'X'))
                     return true;
@@ -178,17 +205,12 @@ namespace Tic_Tac_Toe.Models
             return false;
         }
 
-    }
-
-    public struct Point
-    {
-        public int Coord1 { get; }
-        public int Coord2 { get; }
-
-        public Point(int coord1, int coord2)
+        public bool IsWinner(string id)
         {
-            Coord1 = coord1;
-            Coord2 = coord2;
+            Point point = Find(id);
+            return IsWinner(point.Coord1, point.Coord2);
+
         }
+
     }
 }

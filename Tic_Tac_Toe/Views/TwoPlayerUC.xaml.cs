@@ -31,8 +31,9 @@ namespace Tic_Tac_Toe.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ((Button)sender).Content = 'X';
-
+            string id = (sender as Button).Tag.ToString();
+            pageVM.GameBoard.Place(id);
+            
         }
     }
 }
