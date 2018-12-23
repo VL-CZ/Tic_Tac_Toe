@@ -31,7 +31,10 @@ namespace Tic_Tac_Toe
             DataContext = windowVM;
         }
 
-
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string vmName = ((Button)sender).Tag.ToString();
+            windowVM.ShowViewModel(vmName);
+        }
     }
 }

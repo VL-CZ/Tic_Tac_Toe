@@ -30,10 +30,10 @@
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Tic-tac-toe</TextBlock>
-                <TextBlock>New Game: </TextBlock>
-                <Button>1 player</Button>
-                <Button>2 players</Button>
-                <Button>Start page</Button>
+                <Button Click="Button_Click" Tag="StartPageVM">Start page</Button>
+                <TextBlock>New Game</TextBlock>
+                <Button Click="Button_Click" Tag="OnePlayerVM">1 player</Button>
+                <Button Click="Button_Click" Tag="TwoPlayerVM">2 players</Button>
             </StackPanel>
             <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}"/>
 
