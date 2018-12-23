@@ -8,10 +8,12 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel Orientation="Horizontal">
-            <TextBlock>Time:</TextBlock>
-            <TextBlock Text="{Binding Minutes}"></TextBlock>
-            <TextBlock>:</TextBlock>
-            <TextBlock Text="{Binding Seconds}"></TextBlock>
+            <TextBlock Style="{StaticResource NormalText}">
+                <Run Text="Time: "/>
+                <Run Text="{Binding Minutes}"/>
+                <Run Text=":"/>
+                <Run Text="{Binding Seconds, StringFormat=00}"/>
+            </TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>
