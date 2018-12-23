@@ -24,16 +24,18 @@
     <Grid>
         <Grid Margin="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="140"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Tic-tac-toe</TextBlock>
+            <StackPanel Orientation="Vertical">
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource NormalText}">Tic-tac-toe</TextBlock>
                 <Button Click="Button_Click" Tag="StartPageVM">Start page</Button>
-                <TextBlock>New Game</TextBlock>
+                <TextBlock Style="{StaticResource NormalText}">New Game</TextBlock>
                 <Button Click="Button_Click" Tag="OnePlayerVM">1 player</Button>
                 <Button Click="Button_Click" Tag="TwoPlayerVM">2 players</Button>
+                <TextBlock Style="{StaticResource NormalText}">© Vojtěch Lengál</TextBlock>
+                <TextBlock Style="{StaticResource NormalText}">2018</TextBlock>
             </StackPanel>
             <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}"/>
 

@@ -7,6 +7,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock>Start page</TextBlock> 
+        <Grid Margin="10">
+
+            <StackPanel Orientation="Vertical">
+
+                <TextBlock Style="{StaticResource Heading}">Tic-tac-toe</TextBlock>
+                
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Style="{StaticResource NormalText}">1 player</TextBlock>
+                        <TextBlock Style="{StaticResource NormalText}">Game against AI</TextBlock>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical" Grid.Column="1">
+                        <TextBlock Style="{StaticResource NormalText}">2 players</TextBlock>
+                        <TextBlock Style="{StaticResource NormalText}">1st player: O, 2nd player X</TextBlock>
+                    </StackPanel>
+                </StackPanel>
+
+                <TextBlock Style="{StaticResource NormalText}">Click the button at the left to start the game</TextBlock>
+                
+            </StackPanel>
+            
+        </Grid>
     </Grid>
 </UserControl>
