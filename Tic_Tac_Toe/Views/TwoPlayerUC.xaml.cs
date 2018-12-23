@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Tic_Tac_Toe.Models;
+using Tic_Tac_Toe.ViewModels;
 
 namespace Tic_Tac_Toe.Views
 {
@@ -20,9 +22,14 @@ namespace Tic_Tac_Toe.Views
     /// </summary>
     public partial class TwoPlayerUC : UserControl
     {
+        private TwoPlayerVM pageVM = new TwoPlayerVM();
         public TwoPlayerUC()
         {
             InitializeComponent();
+            DataContext = pageVM;
         }
+
+
+
     }
 }

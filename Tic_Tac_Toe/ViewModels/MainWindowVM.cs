@@ -9,6 +9,9 @@ namespace Tic_Tac_Toe.ViewModels
     class MainWindowVM : BaseVM
     {
         private BaseVM _currentViewModel;
+        /// <summary>
+        /// current viewmodel of main window
+        /// </summary>
         public BaseVM CurrentViewModel
         {
             get

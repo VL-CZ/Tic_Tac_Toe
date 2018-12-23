@@ -7,7 +7,7 @@
         xmlns:VM="clr-namespace:Tic_Tac_Toe.ViewModels"
         xmlns:UC="clr-namespace:Tic_Tac_Toe.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" MinHeight="700" MinWidth="1200" WindowState="Maximized" >
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type VM:StartPageVM}">
