@@ -29,6 +29,11 @@ namespace Tic_Tac_Toe.Models
         /// </summary>
         private readonly int size;
 
+        /// <summary>
+        /// Is winner X/O? 
+        /// </summary>
+        public char? Winner { get; private set; } = null;
+
         public GameBoard(int size)
         {
             this.size = size;
@@ -39,7 +44,7 @@ namespace Tic_Tac_Toe.Models
 
                 for (int j = 0; j < size; j++)
                 {
-                    row.Add(new Cell(emptyFiled));
+                    row.Add(new Cell(emptyFiled, i, j));
                 }
                 Board.Add(row);
             }
@@ -54,10 +59,12 @@ namespace Tic_Tac_Toe.Models
         {
             if (Board[coord1][coord2].Content == emptyFiled)
             {
-                Board[coord1][coord2] = new Cell(player);
+                Cell selectedCell = Board[coord1][coord2];
+                Board[coord1][coord2] = new Cell(player, selectedCell.Coord1, selectedCell.Coord2);
             }
 
             SwitchPlayers();
+            IsWinner(coord1, coord2);
         }
 
         /// <summary>
@@ -67,22 +74,22 @@ namespace Tic_Tac_Toe.Models
         /// <param name="coord2">coordinates of field</param>
         public void Place(string id)
         {
-            Point point = Find(id);
-            Place(point.Coord1, point.Coord2);
+            Cell cell = Find(id);
+            Place(cell.Coord1, cell.Coord2);
         }
 
         /// <summary>
         /// find array with specified ID in board
         /// </summary>
         /// <param name="id"></param>
-        private Point Find(string id)
+        private Cell Find(string id)
         {
             for (int i = 0; i < size; i++)
             {
                 for (int j = 0; j < size; j++)
                 {
                     if (Board[i][j].Id == id)
-                        return new Point(i, j);
+                        return Board[i][j];
                 }
             }
             return null;
@@ -115,9 +122,9 @@ namespace Tic_Tac_Toe.Models
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
-        public bool IsInBoard(Point point)
+        public void IsInBoard(Cell cell)
         {
-            return IsInBoard(point.Coord1, point.Coord2);
+            IsInBoard(cell.Coord1, cell.Coord2);
         }
 
         /// <summary>
@@ -126,7 +133,7 @@ namespace Tic_Tac_Toe.Models
         /// <param name="coord1">coord1 of last move</param>
         /// <param name="coord2">coord2 of last move</param>
         /// <returns></returns>
-        public bool IsWinner(int coord1, int coord2)
+        public void IsWinner(int coord1, int coord2)
         {
             var winningPositions = new List<List<Point>>();
 
@@ -142,7 +149,7 @@ namespace Tic_Tac_Toe.Models
                     new Point(coord1,coord2+i+3),
                     new Point(coord1,coord2+i+4),
                 };
-                if (IsInBoard(list[0]) && IsInBoard(list[4]))
+                if (IsInBoard(list[0].Coord1, list[0].Coord2) && IsInBoard(list[4].Coord1, list[4].Coord2))
                 {
                     winningPositions.Add(list);
                 }
@@ -156,7 +163,7 @@ namespace Tic_Tac_Toe.Models
                     new Point(coord1+i+3,coord2),
                     new Point(coord1+i+4,coord2),
                 };
-                if (IsInBoard(list[0]) && IsInBoard(list[4]))
+                if (IsInBoard(list[0].Coord1, list[0].Coord2) && IsInBoard(list[4].Coord1, list[4].Coord2))
                 {
                     winningPositions.Add(list);
                 }
@@ -170,7 +177,7 @@ namespace Tic_Tac_Toe.Models
                     new Point(coord1+i+3,coord2+i+3),
                     new Point(coord1+i+4,coord2+i+4),
                 };
-                if (IsInBoard(list[0]) && IsInBoard(list[4]))
+                if (IsInBoard(list[0].Coord1, list[0].Coord2) && IsInBoard(list[4].Coord1, list[4].Coord2))
                 {
                     winningPositions.Add(list);
                 }
@@ -178,13 +185,13 @@ namespace Tic_Tac_Toe.Models
                 // diagonal 2 (bottom left -> top right)
                 list = new List<Point>
                 {
-                    new Point(coord2-i,coord2+i),
-                    new Point(coord2-(i+1),coord2+i+1),
-                    new Point(coord2-(i+2),coord2+i+2),
-                    new Point(coord2-(i+3),coord2+i+3),
-                    new Point(coord2-(i+4),coord2+i+4),
+                    new Point(coord1-i,coord2+i),
+                    new Point(coord1-(i+1),coord2+i+1),
+                    new Point(coord1-(i+2),coord2+i+2),
+                    new Point(coord1-(i+3),coord2+i+3),
+                    new Point(coord1-(i+4),coord2+i+4),
                 };
-                if (IsInBoard(list[0]) && IsInBoard(list[4]))
+                if (IsInBoard(list[0].Coord1, list[0].Coord2) && IsInBoard(list[4].Coord1, list[4].Coord2))
                 {
                     winningPositions.Add(list);
                 }
@@ -200,17 +207,20 @@ namespace Tic_Tac_Toe.Models
                     values.Add(Board[c1][c2].Content);
                 }
                 if (values.All(x => x == values[0]) && (values[0] == 'O' || values[0] == 'X'))
-                    return true;
+                    Winner = values[0];
             }
-            return false;
         }
 
-        public bool IsWinner(string id)
+    }
+    public struct Point
+    {
+        public int Coord1 { get; set; }
+        public int Coord2 { get; set; }
+
+        public Point(int coord1, int coord2) : this()
         {
-            Point point = Find(id);
-            return IsWinner(point.Coord1, point.Coord2);
-
+            Coord1 = coord1;
+            Coord2 = coord2;
         }
-
     }
 }

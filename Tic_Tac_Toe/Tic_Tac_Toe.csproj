@@ -57,7 +57,6 @@
     </ApplicationDefinition>
     <Compile Include="Models\Cell.cs" />
     <Compile Include="Models\GameBoard.cs" />
-    <Compile Include="Models\Point.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="ViewModels\OnePlayerVM.cs" />
