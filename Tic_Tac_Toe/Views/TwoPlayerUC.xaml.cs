@@ -36,9 +36,13 @@ namespace Tic_Tac_Toe.Views
 
             string id = (sender as Button).Tag.ToString();
             pageVM.GameBoard.Place(id);
+
+            // Winner?
             if (pageVM.GameBoard.Winner != null)
             {
-                MessageBox.Show($"Winner: {pageVM.GameBoard.Winner}");
+                // get parent window DataContext and switch view
+                MainWindowVM windowVM = (MainWindowVM)Window.GetWindow(this).DataContext;
+                windowVM.ShowViewModel(nameof(EndPageVM));    
             }
         }
     }
