@@ -12,26 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Tic_Tac_Toe.ViewModels;
 
-namespace Tic_Tac_Toe
+namespace Tic_Tac_Toe.Views
 {
-
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TwoPlayerUC : UserControl
     {
-        private MainWindowVM windowVM = new MainWindowVM();
-
-        public MainWindow()
+        public TwoPlayerUC()
         {
             InitializeComponent();
-            windowVM.CurrentViewModel = new StartPageVM();
-            DataContext = windowVM;
         }
-
-
-
     }
 }
