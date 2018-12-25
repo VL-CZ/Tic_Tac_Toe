@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tic_Tac_Toe.Models
 {
-    class GameBoard
+    internal class GameBoard
     {
         /// <summary>
         /// game board
@@ -30,7 +27,7 @@ namespace Tic_Tac_Toe.Models
         private readonly int size;
 
         /// <summary>
-        /// Is winner X/O? 
+        /// Is winner X/O?
         /// </summary>
         public char? Winner { get; private set; } = null;
 
@@ -57,7 +54,7 @@ namespace Tic_Tac_Toe.Models
         /// <param name="coord2">coordinates of field</param>
         public void Place(int coord1, int coord2)
         {
-            if (Board[coord1][coord2].Content == emptyFiled)
+            if (Board[coord1][coord2].Content == emptyFiled && Winner == null)
             {
                 Cell selectedCell = Board[coord1][coord2];
                 Board[coord1][coord2] = new Cell(player, selectedCell.Coord1, selectedCell.Coord2);
@@ -68,7 +65,7 @@ namespace Tic_Tac_Toe.Models
         }
 
         /// <summary>
-        /// place X/O on field 
+        /// place X/O on field
         /// </summary>
         /// <param name="coord1">coordinates of field</param>
         /// <param name="coord2">coordinates of field</param>
@@ -207,11 +204,13 @@ namespace Tic_Tac_Toe.Models
                     values.Add(Board[c1][c2].Content);
                 }
                 if (values.All(x => x == values[0]) && (values[0] == 'O' || values[0] == 'X'))
+                {
                     Winner = values[0];
+                }
             }
         }
-
     }
+
     public struct Point
     {
         public int Coord1 { get; set; }
