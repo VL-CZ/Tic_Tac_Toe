@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Threading;
 
 namespace Tic_Tac_Toe.ViewModels
 {
-    class TimeVM : BaseVM
+    internal class TimeVM : BaseVM
     {
         private DispatcherTimer timer;
 
         public int minutes = 0;
+
         public int Minutes
         {
             get
@@ -26,6 +23,7 @@ namespace Tic_Tac_Toe.ViewModels
         }
 
         public int seconds = 0;
+
         public int Seconds
         {
             get

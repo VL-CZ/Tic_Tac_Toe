@@ -1,10 +1,10 @@
 ﻿<UserControl x:Class="Tic_Tac_Toe.Views.StartPageUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Tic_Tac_Toe.Views"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid Margin="10">
@@ -12,7 +12,7 @@
             <StackPanel Orientation="Vertical">
 
                 <TextBlock Style="{StaticResource Heading}">Tic-tac-toe</TextBlock>
-                
+
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
                         <TextBlock Style="{StaticResource NormalText}">1 player</TextBlock>
@@ -26,9 +26,7 @@
                 </StackPanel>
 
                 <TextBlock Style="{StaticResource NormalText}">Click the button at the left to start the game</TextBlock>
-                
             </StackPanel>
-            
         </Grid>
     </Grid>
 </UserControl>

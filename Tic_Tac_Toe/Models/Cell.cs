@@ -10,6 +10,7 @@ namespace Tic_Tac_Toe.Models
         private readonly int boardDimension = 25;
 
         private int id;
+
         /// <summary>
         /// id of the cell (initialized in ctor)
         /// </summary>
@@ -27,6 +28,7 @@ namespace Tic_Tac_Toe.Models
         }
 
         private char content;
+
         /// <summary>
         /// content of the cell
         /// </summary>
@@ -44,6 +46,7 @@ namespace Tic_Tac_Toe.Models
         }
 
         private int coord1;
+
         /// <summary>
         /// vertical (0-highest)
         /// </summary>
@@ -61,6 +64,7 @@ namespace Tic_Tac_Toe.Models
         }
 
         private int coord2;
+
         /// <summary>
         /// horizontal (0-leftmost)
         /// </summary>
@@ -78,6 +82,7 @@ namespace Tic_Tac_Toe.Models
         }
 
         private Brush background;
+
         /// <summary>
         /// background
         /// </summary>

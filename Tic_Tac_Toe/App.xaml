@@ -4,32 +4,31 @@
              xmlns:local="clr-namespace:Tic_Tac_Toe"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
+
         <!-- Stackpanel -->
         <Style TargetType="StackPanel">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="10"/>
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="10" />
         </Style>
 
         <!-- TextBlock.Heading -->
         <Style TargetType="TextBlock" x:Key="Heading">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="50" />
         </Style>
 
         <!-- TextBlock.NormalText -->
         <Style TargetType="TextBlock" x:Key="NormalText">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="15" />
         </Style>
 
         <!-- Button -->
         <Style TargetType="Button">
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Width" Value="80"/>
-            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="80" />
+            <Setter Property="FontSize" Value="15" />
         </Style>
-        
     </Application.Resources>
 </Application>

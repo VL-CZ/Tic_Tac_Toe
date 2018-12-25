@@ -7,24 +7,24 @@
         xmlns:VM="clr-namespace:Tic_Tac_Toe.ViewModels"
         xmlns:UC="clr-namespace:Tic_Tac_Toe.Views"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="700" MinWidth="1200" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow" >
+        Title="MainWindow" MinHeight="700" MinWidth="1200" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow">
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type VM:StartPageVM}">
-            <UC:StartPageUC/>
+            <UC:StartPageUC />
         </DataTemplate>
         <DataTemplate DataType="{x:Type VM:OnePlayerVM}">
-            <UC:OnePlayerUC/>
+            <UC:OnePlayerUC />
         </DataTemplate>
         <DataTemplate DataType="{x:Type VM:TwoPlayerVM}">
-            <UC:TwoPlayerUC/>
+            <UC:TwoPlayerUC />
         </DataTemplate>
     </Window.Resources>
 
     <Grid>
         <Grid Margin="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="140" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
@@ -38,8 +38,7 @@
                 <TextBlock Style="{StaticResource NormalText}">© Vojtěch Lengál</TextBlock>
                 <TextBlock Style="{StaticResource NormalText}">2018</TextBlock>
             </StackPanel>
-            <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}"/>
-
+            <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}" />
         </Grid>
     </Grid>
 </Window>
