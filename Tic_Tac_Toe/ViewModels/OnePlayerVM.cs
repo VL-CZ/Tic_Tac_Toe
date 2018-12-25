@@ -1,6 +1,7 @@
 ﻿namespace Tic_Tac_Toe.ViewModels
 {
-    internal class OnePlayerVM : BaseVM
+    internal class OnePlayerVM : GameVM
     {
+
     }
 }

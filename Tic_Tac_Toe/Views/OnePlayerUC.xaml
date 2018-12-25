@@ -3,10 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Tic_Tac_Toe.Views"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock>1 player</TextBlock>
+             d:DesignHeight="450" d:DesignWidth="800"
+             DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.CurrentViewModel}">
+    <UserControl.Resources>
+        <DataTemplate x:Key="DataTemplate_Level2">
+            <Button Content="{Binding Content}" Tag="{Binding Id}" Height="20" Width="20" BorderThickness="0" Background="{Binding Background}"
+                    Click="Button_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="DataTemplate_Level1">
+            <ItemsControl ItemsSource="{Binding}" ItemTemplate="{DynamicResource DataTemplate_Level2}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="0" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBlock Style="{StaticResource NormalText}">
+                <Run Text="Time: " />
+                <Run Text="{Binding GameTimer.Minutes}" />
+                <Run Text=":" />
+                <Run Text="{Binding GameTimer.Seconds, StringFormat=00}" />
+            </TextBlock>
+        </StackPanel>
+
+        <ItemsControl Name="GameIC" Grid.Row="1" ItemsSource="{Binding GameBoard.Board}" ItemTemplate="{DynamicResource DataTemplate_Level1}"
+                      VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+        <StackPanel Orientation="Vertical" Name="WinnerTextBlock" Visibility="Hidden" Grid.Row="2">
+            <TextBlock Style="{StaticResource NormalText}">
+                <Run Text="Winner: " />
+                <Run Text="{Binding GameBoard.Winner, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Style="{StaticResource NormalText}">Click Homepage button at the left to play again.</TextBlock>
+        </StackPanel>
     </Grid>
 </UserControl>

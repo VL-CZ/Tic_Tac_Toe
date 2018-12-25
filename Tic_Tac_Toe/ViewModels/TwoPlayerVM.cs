@@ -2,15 +2,8 @@
 
 namespace Tic_Tac_Toe.ViewModels
 {
-    internal class TwoPlayerVM : BaseVM
+    internal class TwoPlayerVM : GameVM
     {
-        public GameBoard GameBoard { get; }
-        public GameTimer GameTimer { get; }
-
-        public TwoPlayerVM()
-        {
-            GameBoard = new GameBoard(25);
-            GameTimer = new GameTimer();
-        }
+        
     }
 }
