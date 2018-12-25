@@ -10,6 +10,6 @@ namespace Tic_Tac_Toe.ViewModels
 {
     class TwoPlayerVM : BaseVM
     {
-        public GameBoard GameBoard { get; set; } = new GameBoard(20);
+        public GameBoard GameBoard { get; set; } = new GameBoard(25);
     }
 }

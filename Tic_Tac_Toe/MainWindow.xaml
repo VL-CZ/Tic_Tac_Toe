@@ -7,7 +7,7 @@
         xmlns:VM="clr-namespace:Tic_Tac_Toe.ViewModels"
         xmlns:UC="clr-namespace:Tic_Tac_Toe.Views"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="700" MinWidth="1200" WindowState="Maximized" >
+        Title="MainWindow" MinHeight="700" MinWidth="1200" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow" >
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type VM:StartPageVM}">
@@ -37,6 +37,7 @@
                 <TextBlock Style="{StaticResource NormalText}">New Game</TextBlock>
                 <Button Click="Button_Click" Tag="OnePlayerVM">1 player</Button>
                 <Button Click="Button_Click" Tag="TwoPlayerVM">2 players</Button>
+                <Button Click="EndGameButton_Click">End Game</Button>
                 <TextBlock Style="{StaticResource NormalText}">© Vojtěch Lengál</TextBlock>
                 <TextBlock Style="{StaticResource NormalText}">2018</TextBlock>
             </StackPanel>

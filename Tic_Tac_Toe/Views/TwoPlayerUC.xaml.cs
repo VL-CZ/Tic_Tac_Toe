@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Tic_Tac_Toe.Models;
 using Tic_Tac_Toe.ViewModels;
 
 namespace Tic_Tac_Toe.Views
@@ -23,6 +10,7 @@ namespace Tic_Tac_Toe.Views
     public partial class TwoPlayerUC : UserControl
     {
         private TwoPlayerVM pageVM;
+
         public TwoPlayerUC()
         {
             InitializeComponent();
@@ -30,19 +18,20 @@ namespace Tic_Tac_Toe.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // assign pageVM
-            if (pageVM == null)
-                pageVM = (TwoPlayerVM)DataContext;
+            // initialize pageVM
+            pageVM = pageVM ?? (TwoPlayerVM)DataContext;
 
-            string id = (sender as Button).Tag.ToString();
+            int id = int.Parse((sender as Button).Tag.ToString());
+
             pageVM.GameBoard.Place(id);
 
             // Winner?
-            if (pageVM.GameBoard.Winner != null)
+            char? winner = pageVM.GameBoard.Winner;
+            if (winner != null)
             {
-                // get parent window DataContext and switch view
-                MainWindowVM windowVM = (MainWindowVM)Window.GetWindow(this).DataContext;
-                windowVM.ShowViewModel(nameof(EndPageVM));    
+                TimeVM timeVM = (TimeVM)TimeUC.DataContext;
+                timeVM.StopTimer();
+                WinnerTextBlock.Text = $"Winner: {winner}";
             }
         }
     }

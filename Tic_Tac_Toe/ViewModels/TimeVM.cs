@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace Tic_Tac_Toe.ViewModels
 {
     class TimeVM : BaseVM
     {
+        private DispatcherTimer timer;
+
         public int minutes = 0;
         public int Minutes
         {
@@ -38,6 +41,25 @@ namespace Tic_Tac_Toe.ViewModels
                 }
                 RaisePropertyChanged();
             }
+        }
+
+        public TimeVM()
+        {
+            timer = new DispatcherTimer();
+            timer.Tick += new EventHandler(DispatcherTimer_Tick);
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Start();
+        }
+
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            Seconds++;
+        }
+
+        public void StopTimer()
+        {
+            timer.Stop();
+            timer.Tick -= DispatcherTimer_Tick;
         }
     }
 }

@@ -11,7 +11,8 @@
              DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.CurrentViewModel}" >
     <UserControl.Resources>
         <DataTemplate x:Key="DataTemplate_Level2">
-            <Button Content="{Binding Content}" Tag="{Binding Id}" Height="30" Width="30" BorderThickness="0" Click="Button_Click"/>
+            <Button Content="{Binding Content}" Tag="{Binding Id}" Height="20" Width="20" BorderThickness="0" Click="Button_Click"
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         </DataTemplate>
 
         <DataTemplate x:Key="DataTemplate_Level1">
@@ -29,10 +30,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <UC:TimeUC/>
+        <UC:TimeUC x:Name="TimeUC"/>
 
         <ItemsControl Name="GameIC" Grid.Row="1" ItemsSource="{Binding GameBoard.Board}" ItemTemplate="{DynamicResource DataTemplate_Level1}"/>
+
+        <TextBlock Name="WinnerTextBlock" Grid.Row="2" Style="{StaticResource NormalText}"></TextBlock>
     </Grid>
 </UserControl>

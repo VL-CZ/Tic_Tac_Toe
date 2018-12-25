@@ -43,10 +43,6 @@ namespace Tic_Tac_Toe.ViewModels
                 case nameof(StartPageVM):
                     viewModel = new StartPageVM();
                     break;
-                case nameof(EndPageVM):
-                    viewModel = new EndPageVM();
-                    break;
-                    
             }
             CurrentViewModel = viewModel;
         }

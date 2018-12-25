@@ -36,5 +36,10 @@ namespace Tic_Tac_Toe
             string vmName = ((Button)sender).Tag.ToString();
             windowVM.ShowViewModel(vmName);
         }
+
+        private void EndGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.MainWindow.Close(); 
+        }
     }
 }

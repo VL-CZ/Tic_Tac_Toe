@@ -61,10 +61,10 @@ namespace Tic_Tac_Toe.Models
             {
                 Cell selectedCell = Board[coord1][coord2];
                 Board[coord1][coord2] = new Cell(player, selectedCell.Coord1, selectedCell.Coord2);
-            }
 
-            SwitchPlayers();
-            IsWinner(coord1, coord2);
+                SwitchPlayers();
+                IsWinner(coord1, coord2);
+            }
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Tic_Tac_Toe.Models
         /// </summary>
         /// <param name="coord1">coordinates of field</param>
         /// <param name="coord2">coordinates of field</param>
-        public void Place(string id)
+        public void Place(int id)
         {
             Cell cell = Find(id);
             Place(cell.Coord1, cell.Coord2);
@@ -82,7 +82,7 @@ namespace Tic_Tac_Toe.Models
         /// find array with specified ID in board
         /// </summary>
         /// <param name="id"></param>
-        private Cell Find(string id)
+        private Cell Find(int id)
         {
             for (int i = 0; i < size; i++)
             {
