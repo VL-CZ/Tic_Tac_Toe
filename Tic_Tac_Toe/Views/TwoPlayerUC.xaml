@@ -25,11 +25,11 @@
             </ItemsControl>
         </DataTemplate>
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="60" />
             <RowDefinition />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="60" />
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Row="0">
@@ -41,12 +41,15 @@
             </TextBlock>
         </StackPanel>
 
-        <ItemsControl Name="GameIC" Grid.Row="1" ItemsSource="{Binding GameBoard.Board}" ItemTemplate="{DynamicResource DataTemplate_Level1}" 
+        <ItemsControl Name="GameIC" Grid.Row="1" ItemsSource="{Binding GameBoard.Board}" ItemTemplate="{DynamicResource DataTemplate_Level1}"
                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-        <TextBlock Name="WinnerTextBlock" Visibility="Hidden" Grid.Row="2" Style="{StaticResource NormalText}" >
-            <Run Text="Winner: "/>
-            <Run Text="{Binding GameBoard.Winner, Mode=OneWay}"/>
-        </TextBlock>
+        <StackPanel Orientation="Vertical" Name="WinnerTextBlock" Visibility="Hidden" Grid.Row="2">
+            <TextBlock Style="{StaticResource NormalText}">
+                <Run Text="Winner: " />
+                <Run Text="{Binding GameBoard.Winner, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Style="{StaticResource NormalText}">Click Homepage button at the left to play again.</TextBlock>
+        </StackPanel>
     </Grid>
 </UserControl>

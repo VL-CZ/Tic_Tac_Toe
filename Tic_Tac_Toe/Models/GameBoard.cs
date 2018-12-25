@@ -33,6 +33,7 @@ namespace Tic_Tac_Toe.Models
         private readonly int size;
 
         private char? winner = null;
+
         /// <summary>
         /// Is winner X/O?
         /// </summary>

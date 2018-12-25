@@ -2,7 +2,7 @@
 {
     internal class MainWindowVM : BaseVM
     {
-        private BaseVM _currentViewModel;
+        private BaseVM currentViewModel;
 
         /// <summary>
         /// current viewmodel of main window
@@ -11,11 +11,11 @@
         {
             get
             {
-                return _currentViewModel;
+                return currentViewModel;
             }
             set
             {
-                _currentViewModel = value;
+                currentViewModel = value;
                 RaisePropertyChanged();
             }
         }

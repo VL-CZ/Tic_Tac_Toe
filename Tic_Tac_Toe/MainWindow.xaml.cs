@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using Tic_Tac_Toe.ViewModels;
 
@@ -23,6 +22,18 @@ namespace Tic_Tac_Toe
         {
             string vmName = ((Button)sender).Tag.ToString();
             windowVM.ShowViewModel(vmName);
+            if(vmName == nameof(StartPageVM))
+            {
+                GameTextBlock.Visibility = Visibility.Visible;
+                P1Button.Visibility = Visibility.Visible;
+                P2Button.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                GameTextBlock.Visibility = Visibility.Collapsed;
+                P1Button.Visibility = Visibility.Collapsed;
+                P2Button.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void EndGameButton_Click(object sender, RoutedEventArgs e)
