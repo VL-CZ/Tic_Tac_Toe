@@ -57,16 +57,13 @@
     </ApplicationDefinition>
     <Compile Include="Models\Cell.cs" />
     <Compile Include="Models\GameBoard.cs" />
+    <Compile Include="Models\ObservableObject.cs" />
     <Compile Include="ViewModels\BaseVM.cs" />
-    <Compile Include="ViewModels\EndPageVM.cs" />
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="ViewModels\OnePlayerVM.cs" />
     <Compile Include="ViewModels\StartPageVM.cs" />
     <Compile Include="ViewModels\TimeVM.cs" />
     <Compile Include="ViewModels\TwoPlayerVM.cs" />
-    <Compile Include="Views\EndPageUC.xaml.cs">
-      <DependentUpon>EndPageUC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\OnePlayerUC.xaml.cs">
       <DependentUpon>OnePlayerUC.xaml</DependentUpon>
     </Compile>
@@ -91,10 +88,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\EndPageUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\OnePlayerUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Media;
 
 namespace Tic_Tac_Toe.Models
 {
@@ -22,6 +23,11 @@ namespace Tic_Tac_Toe.Models
         private readonly char emptyFiled = ' ';
 
         /// <summary>
+        /// color of winning cell
+        /// </summary>
+        private readonly Brush winningCellColor;
+
+        /// <summary>
         /// size of the game board
         /// </summary>
         private readonly int size;
@@ -34,6 +40,7 @@ namespace Tic_Tac_Toe.Models
         public GameBoard(int size)
         {
             this.size = size;
+            winningCellColor = new SolidColorBrush(Color.FromRgb(50, 205, 50));
 
             for (int i = 0; i < size; i++)
             {
@@ -125,12 +132,12 @@ namespace Tic_Tac_Toe.Models
         }
 
         /// <summary>
-        /// determines whether there is a winner
+        /// get winning positions list
         /// </summary>
         /// <param name="coord1">coord1 of last move</param>
         /// <param name="coord2">coord2 of last move</param>
         /// <returns></returns>
-        public void IsWinner(int coord1, int coord2)
+        private List<List<Point>> GetWinningPositions(int coord1, int coord2)
         {
             var winningPositions = new List<List<Point>>();
 
@@ -194,18 +201,38 @@ namespace Tic_Tac_Toe.Models
                 }
             }
 
+            return winningPositions;
+        }
+
+        /// <summary>
+        /// determines whether there is a winner
+        /// </summary>
+        /// <param name="coord1">coord1 of last move</param>
+        /// <param name="coord2">coord2 of last move</param>
+        /// <returns></returns>
+        public void IsWinner(int coord1, int coord2)
+        {
+            var winningPositions = GetWinningPositions(coord1, coord2);
+
             foreach (var list in winningPositions)
             {
-                List<char> values = new List<char>();
+                List<Cell> cells = new List<Cell>();
+
                 for (int i = 0; i < list.Count; i++)
                 {
                     int c1 = list[i].Coord1;
                     int c2 = list[i].Coord2;
-                    values.Add(Board[c1][c2].Content);
+                    cells.Add(Board[c1][c2]);
                 }
-                if (values.All(x => x == values[0]) && (values[0] == 'O' || values[0] == 'X'))
+                if (cells.All(x => x.Content == cells[0].Content) && (cells[0].Content == 'O' || cells[0].Content == 'X'))
                 {
-                    Winner = values[0];
+                    Winner = cells[0].Content;
+
+                    foreach (Cell winningCell in cells)
+                    {
+                        Board[winningCell.Coord1][winningCell.Coord2] = new Cell(winningCell.Content,
+                            winningCell.Coord1, winningCell.Coord2, winningCellColor);
+                    }
                 }
             }
         }

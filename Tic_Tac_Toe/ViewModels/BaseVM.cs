@@ -5,16 +5,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Tic_Tac_Toe.Models;
 
 namespace Tic_Tac_Toe.ViewModels
 {
-    class BaseVM : INotifyPropertyChanged
+    class BaseVM : ObservableObject
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void RaisePropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

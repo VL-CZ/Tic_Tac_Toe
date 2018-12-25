@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using Tic_Tac_Toe.ViewModels;
 
 namespace Tic_Tac_Toe.Views

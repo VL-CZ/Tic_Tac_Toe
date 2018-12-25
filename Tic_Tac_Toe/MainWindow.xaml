@@ -19,9 +19,6 @@
         <DataTemplate DataType="{x:Type VM:TwoPlayerVM}">
             <UC:TwoPlayerUC/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type VM:EndPageVM}">
-            <UC:EndPageUC/>
-        </DataTemplate>
     </Window.Resources>
 
     <Grid>

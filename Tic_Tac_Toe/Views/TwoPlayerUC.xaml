@@ -11,7 +11,7 @@
              DataContext="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.CurrentViewModel}" >
     <UserControl.Resources>
         <DataTemplate x:Key="DataTemplate_Level2">
-            <Button Content="{Binding Content}" Tag="{Binding Id}" Height="20" Width="20" BorderThickness="0"
+            <Button Content="{Binding Content}" Tag="{Binding Id}" Height="20" Width="20" BorderThickness="0" Background="{Binding Background}"
                     Click="Button_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         </DataTemplate>
 
