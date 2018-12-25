@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Threading;
 
-namespace Tic_Tac_Toe.ViewModels
+namespace Tic_Tac_Toe.Models
 {
-    internal class TimeVM : BaseVM
+    internal class GameTimer : ObservableObject
     {
         private DispatcherTimer timer;
 
@@ -41,7 +41,7 @@ namespace Tic_Tac_Toe.ViewModels
             }
         }
 
-        public TimeVM()
+        public GameTimer()
         {
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(DispatcherTimer_Tick);

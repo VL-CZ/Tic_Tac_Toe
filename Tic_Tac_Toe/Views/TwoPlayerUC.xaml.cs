@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using Tic_Tac_Toe.Models;
 using Tic_Tac_Toe.ViewModels;
 
 namespace Tic_Tac_Toe.Views
@@ -29,9 +30,8 @@ namespace Tic_Tac_Toe.Views
             char? winner = pageVM.GameBoard.Winner;
             if (winner != null)
             {
-                TimeVM timeVM = (TimeVM)TimeUC.DataContext;
-                timeVM.StopTimer();
-                WinnerTextBlock.Text = $"Winner: {winner}";
+                pageVM.GameTimer.StopTimer();
+                WinnerTextBlock.Visibility = Visibility.Visible;
             }
         }
     }

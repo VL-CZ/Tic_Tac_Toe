@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace Tic_Tac_Toe.Models
 {
-    internal class GameBoard
+    internal class GameBoard : ObservableObject
     {
         /// <summary>
         /// game board
@@ -32,10 +32,22 @@ namespace Tic_Tac_Toe.Models
         /// </summary>
         private readonly int size;
 
+        private char? winner = null;
         /// <summary>
         /// Is winner X/O?
         /// </summary>
-        public char? Winner { get; private set; } = null;
+        public char? Winner
+        {
+            get
+            {
+                return winner;
+            }
+            private set
+            {
+                winner = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public GameBoard(int size)
         {

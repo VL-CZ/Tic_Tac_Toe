@@ -12,7 +12,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="DataTemplate_Level2">
             <Button Content="{Binding Content}" Tag="{Binding Id}" Height="20" Width="20" BorderThickness="0" Background="{Binding Background}"
-                    Click="Button_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" />
+                    Click="Button_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" />
         </DataTemplate>
 
         <DataTemplate x:Key="DataTemplate_Level1">
@@ -32,10 +32,21 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
-        <UC:TimeUC x:Name="TimeUC" />
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBlock Style="{StaticResource NormalText}">
+                <Run Text="Time: " />
+                <Run Text="{Binding GameTimer.Minutes}" />
+                <Run Text=":" />
+                <Run Text="{Binding GameTimer.Seconds, StringFormat=00}" />
+            </TextBlock>
+        </StackPanel>
 
-        <ItemsControl Name="GameIC" Grid.Row="1" ItemsSource="{Binding GameBoard.Board}" ItemTemplate="{DynamicResource DataTemplate_Level1}" />
+        <ItemsControl Name="GameIC" Grid.Row="1" ItemsSource="{Binding GameBoard.Board}" ItemTemplate="{DynamicResource DataTemplate_Level1}" 
+                      VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-        <TextBlock Name="WinnerTextBlock" Grid.Row="2" Style="{StaticResource NormalText}"></TextBlock>
+        <TextBlock Name="WinnerTextBlock" Visibility="Hidden" Grid.Row="2" Style="{StaticResource NormalText}" >
+            <Run Text="Winner: "/>
+            <Run Text="{Binding GameBoard.Winner, Mode=OneWay}"/>
+        </TextBlock>
     </Grid>
 </UserControl>
