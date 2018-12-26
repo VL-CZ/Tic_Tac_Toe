@@ -23,6 +23,7 @@ namespace Tic_Tac_Toe.Views
 
             int id = int.Parse((sender as Button).Tag.ToString());
 
+            // user's move
             pageVM.GameBoard.Place(id);
 
             // Winner?
@@ -32,6 +33,15 @@ namespace Tic_Tac_Toe.Views
                 pageVM.GameTimer.StopTimer();
                 WinnerTextBlock.Visibility = Visibility.Visible;
             }
+
+            // AI's move
+            pageVM.GameBot.BestMove();
+            if (winner != null)
+            {
+                pageVM.GameTimer.StopTimer();
+                WinnerTextBlock.Visibility = Visibility.Visible;
+            }
+
         }
     }
 }

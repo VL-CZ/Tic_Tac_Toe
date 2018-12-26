@@ -25,7 +25,7 @@
                     </StackPanel>
                 </StackPanel>
 
-                <TextBlock Style="{StaticResource NormalText}">Click the button at the left to start the game</TextBlock>
+                <TextBlock Style="{StaticResource NormalText}">Choose game mode and click the button at the left (1 Player/ 2 Players) to start the game</TextBlock>
             </StackPanel>
         </Grid>
     </Grid>

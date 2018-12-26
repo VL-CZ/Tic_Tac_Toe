@@ -28,13 +28,17 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Vertical">
-                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource NormalText}">Tic-tac-toe</TextBlock>
-                <Button Click="Button_Click" Tag="StartPageVM">Homepage</Button>
-                <TextBlock Style="{StaticResource NormalText}" Name="GameTextBlock">New Game</TextBlock>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource NormalText}" FontWeight="Bold">Tic-tac-toe</TextBlock>
+                <Button Click="Button_Click" Tag="StartPageVM">Play game</Button>
+                <TextBlock/>
+                <TextBlock Style="{StaticResource NormalText}" Name="GameTextBlock" FontWeight="Bold">New Game</TextBlock>
                 <Button Click="Button_Click" Tag="OnePlayerVM" Name="P1Button">1 player</Button>
                 <Button Click="Button_Click" Tag="TwoPlayerVM" Name="P2Button">2 players</Button>
+                <TextBlock/>
                 <Button Click="EndGameButton_Click">Quit App</Button>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
                 <TextBlock Style="{StaticResource NormalText}">© Vojtěch Lengál</TextBlock>
                 <TextBlock Style="{StaticResource NormalText}">2018</TextBlock>
             </StackPanel>

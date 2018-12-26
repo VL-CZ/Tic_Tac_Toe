@@ -20,7 +20,7 @@ namespace Tic_Tac_Toe.Models
         /// <summary>
         /// character of empty filed
         /// </summary>
-        private readonly char emptyFiled = ' ';
+        public char EmptyField { get; } = ' ';
 
         /// <summary>
         /// color of winning cell
@@ -28,9 +28,9 @@ namespace Tic_Tac_Toe.Models
         private readonly Brush winningCellColor;
 
         /// <summary>
-        /// size of the game board
+        /// Size of the game board
         /// </summary>
-        private readonly int size;
+        public int Size { get; }
 
         private char? winner = null;
 
@@ -52,7 +52,7 @@ namespace Tic_Tac_Toe.Models
 
         public GameBoard(int size)
         {
-            this.size = size;
+            this.Size = size;
             winningCellColor = new SolidColorBrush(Color.FromRgb(50, 205, 50));
 
             for (int i = 0; i < size; i++)
@@ -61,7 +61,7 @@ namespace Tic_Tac_Toe.Models
 
                 for (int j = 0; j < size; j++)
                 {
-                    row.Add(new Cell(emptyFiled, i, j));
+                    row.Add(new Cell(EmptyField, i, j));
                 }
                 Board.Add(row);
             }
@@ -74,7 +74,7 @@ namespace Tic_Tac_Toe.Models
         /// <param name="coord2">coordinates of field</param>
         public void Place(int coord1, int coord2)
         {
-            if (Board[coord1][coord2].Content == emptyFiled && Winner == null)
+            if (Board[coord1][coord2].Content == EmptyField && Winner == null)
             {
                 Cell selectedCell = Board[coord1][coord2];
                 Board[coord1][coord2] = new Cell(player, selectedCell.Coord1, selectedCell.Coord2);
@@ -101,9 +101,9 @@ namespace Tic_Tac_Toe.Models
         /// <param name="id"></param>
         private Cell Find(int id)
         {
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < Size; i++)
             {
-                for (int j = 0; j < size; j++)
+                for (int j = 0; j < Size; j++)
                 {
                     if (Board[i][j].Id == id)
                         return Board[i][j];
@@ -131,7 +131,7 @@ namespace Tic_Tac_Toe.Models
         /// <returns></returns>
         public bool IsInBoard(int coord1, int coord2)
         {
-            return (coord1 >= 0) && (coord1 < size) && (coord2 >= 0) && (coord2 < size);
+            return (coord1 >= 0) && (coord1 < Size) && (coord2 >= 0) && (coord2 < Size);
         }
 
         /// <summary>
