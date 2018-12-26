@@ -24,12 +24,14 @@ namespace Tic_Tac_Toe
             windowVM.ShowViewModel(vmName);
             if(vmName == nameof(StartPageVM))
             {
+                QuitGameButton.Visibility = Visibility.Collapsed;
                 GameTextBlock.Visibility = Visibility.Visible;
                 P1Button.Visibility = Visibility.Visible;
                 P2Button.Visibility = Visibility.Visible;
             }
             else
             {
+                QuitGameButton.Visibility = Visibility.Visible;
                 GameTextBlock.Visibility = Visibility.Collapsed;
                 P1Button.Visibility = Visibility.Collapsed;
                 P2Button.Visibility = Visibility.Collapsed;

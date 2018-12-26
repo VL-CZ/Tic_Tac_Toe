@@ -20,7 +20,7 @@ namespace Tic_Tac_Toe.Models
         /// <summary>
         /// character of empty filed
         /// </summary>
-        public char EmptyField { get; } = ' ';
+        private readonly char emptyField = ' ';
 
         /// <summary>
         /// color of winning cell
@@ -61,7 +61,7 @@ namespace Tic_Tac_Toe.Models
 
                 for (int j = 0; j < size; j++)
                 {
-                    row.Add(new Cell(EmptyField, i, j));
+                    row.Add(new Cell(emptyField, i, j));
                 }
                 Board.Add(row);
             }
@@ -74,7 +74,7 @@ namespace Tic_Tac_Toe.Models
         /// <returns></returns>
         public bool IsEmpty(int coord1, int coord2)
         {
-            return Board[coord1][coord2].Content == EmptyField;
+            return Board[coord1][coord2].Content == emptyField;
         }
 
         /// <summary>
@@ -269,6 +269,7 @@ namespace Tic_Tac_Toe.Models
                 }
             }
         }
+
     }
 
     public struct Point

@@ -46,7 +46,7 @@
                 <Run Text="Winner: " />
                 <Run Text="{Binding GameBoard.Winner, Mode=OneWay}" />
             </TextBlock>
-            <TextBlock Style="{StaticResource NormalText}">Click 'Play game' button at the left to play again.</TextBlock>
+            <TextBlock Style="{StaticResource NormalText}">Click 'Quit game' button to select game mode and play again.</TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>

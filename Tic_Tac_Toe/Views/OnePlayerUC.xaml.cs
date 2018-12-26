@@ -24,6 +24,7 @@ namespace Tic_Tac_Toe.Views
             // get cellID from Tag
             int cellID = int.Parse((sender as Button).Tag.ToString());
 
+            #region User's move
             // user's move
             if (!pageVM.GameBoard.IsEmpty(cellID))
                 return;
@@ -37,14 +38,20 @@ namespace Tic_Tac_Toe.Views
                 pageVM.GameTimer.StopTimer();
                 WinnerTextBlock.Visibility = Visibility.Visible;
             }
+            #endregion
 
+            #region AI's move
             // AI's move
             pageVM.GameBot.BestMove();
+
+            // Winner?
+            winner = pageVM.GameBoard.Winner;
             if (winner != null)
             {
                 pageVM.GameTimer.StopTimer();
                 WinnerTextBlock.Visibility = Visibility.Visible;
             }
+            #endregion
 
         }
     }
