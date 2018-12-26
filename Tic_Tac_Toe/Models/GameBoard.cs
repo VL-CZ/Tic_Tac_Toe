@@ -68,13 +68,34 @@ namespace Tic_Tac_Toe.Models
         }
 
         /// <summary>
+        /// is this position empty?
+        /// </summary>
+        /// <param name="cell"></param>
+        /// <returns></returns>
+        public bool IsEmpty(int coord1, int coord2)
+        {
+            return Board[coord1][coord2].Content == EmptyField;
+        }
+
+        /// <summary>
+        /// is the cell with cellID empty?
+        /// </summary>
+        /// <param name="cellID"></param>
+        /// <returns></returns>
+        public bool IsEmpty(int cellID)
+        {
+            Cell cell = Find(cellID);
+            return IsEmpty(cell.Coord1, cell.Coord2);
+        }
+
+        /// <summary>
         /// place X/O on field with coordinates
         /// </summary>
         /// <param name="coord1">coordinates of field</param>
         /// <param name="coord2">coordinates of field</param>
         public void Place(int coord1, int coord2)
         {
-            if (Board[coord1][coord2].Content == EmptyField && Winner == null)
+            if (IsEmpty(coord1,coord2) && Winner == null)
             {
                 Cell selectedCell = Board[coord1][coord2];
                 Board[coord1][coord2] = new Cell(player, selectedCell.Coord1, selectedCell.Coord2);
@@ -85,13 +106,12 @@ namespace Tic_Tac_Toe.Models
         }
 
         /// <summary>
-        /// place X/O on field
+        /// place X/O on cell with cellID
         /// </summary>
-        /// <param name="coord1">coordinates of field</param>
-        /// <param name="coord2">coordinates of field</param>
-        public void Place(int id)
+        /// <param name="cellID"></param>
+        public void Place(int cellID)
         {
-            Cell cell = Find(id);
+            Cell cell = Find(cellID);
             Place(cell.Coord1, cell.Coord2);
         }
 
@@ -139,9 +159,9 @@ namespace Tic_Tac_Toe.Models
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
-        public void IsInBoard(Cell cell)
+        public bool IsInBoard(Cell cell)
         {
-            IsInBoard(cell.Coord1, cell.Coord2);
+            return IsInBoard(cell.Coord1, cell.Coord2);
         }
 
         /// <summary>

@@ -21,10 +21,14 @@ namespace Tic_Tac_Toe.Views
             // initialize pageVM
             pageVM = pageVM ?? (OnePlayerVM)DataContext;
 
-            int id = int.Parse((sender as Button).Tag.ToString());
+            // get cellID from Tag
+            int cellID = int.Parse((sender as Button).Tag.ToString());
 
             // user's move
-            pageVM.GameBoard.Place(id);
+            if (!pageVM.GameBoard.IsEmpty(cellID))
+                return;
+
+            pageVM.GameBoard.Place(cellID);
 
             // Winner?
             char? winner = pageVM.GameBoard.Winner;
