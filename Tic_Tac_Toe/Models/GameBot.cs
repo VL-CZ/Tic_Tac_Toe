@@ -25,11 +25,13 @@ namespace Tic_Tac_Toe.Models
         /// </summary>
         private readonly char playerCharacter;
 
-        private readonly int makeFivePriority = 1000000;
+        // priority of movement that makes 5,4,3,2 characters in a row
+        private readonly int makeFivePriority = 1000000; // victory
         private readonly int makeFourPriority = 5000;
         private readonly int makeThreePriority = 500;
         private readonly int makeTwoPriority = 50;
 
+        // priority of movement that makes 4,3,2,1 characters in a row
         private readonly int blockFourPriority = 10000;
         private readonly int blockThreePriority = 1000;
         private readonly int blockTwoPriority = 100;
@@ -47,13 +49,49 @@ namespace Tic_Tac_Toe.Models
         }
 
         /// <summary>
-        /// block/ attack
+        /// check if <paramref name="positionSequence"/> is blocked on the other end than <paramref name="position"/>
+        /// </summary>
+        /// <param name="position">position of the possible movement</param>
+        /// <param name="positionSequence">characters in a row, (placing at <paramref name="position"/> makes <paramref name="positionSequence"/> longer)</param>
+        /// <param name="sequenceCharacter">character of sequence (X/O), ordered from nearest to furthest to <paramref name="position"/></param>
+        /// <param name="blockingCharacter">character of opposite player (opposite than <paramref name="sequenceCharacter"/>)</param>
+        /// <returns></returns>
+        private bool IsBlocked(Point position, List<Point> positionSequence, char sequenceCharacter, char blockingCharacter)
+        {
+            int differenceCoord1, differenceCoord2;
+            Point blockingCell = new Point();
+            Point lastInSequence = positionSequence.Last();
+
+            differenceCoord1 = lastInSequence.Coord1 - position.Coord1;
+            differenceCoord2 = lastInSequence.Coord2 - position.Coord2;
+
+            if (differenceCoord1 < 0)
+                blockingCell.Coord1 = lastInSequence.Coord1 - 1;
+            else if (differenceCoord1 > 0)
+                blockingCell.Coord1 = lastInSequence.Coord1 + 1;
+            else
+                blockingCell.Coord1 = lastInSequence.Coord1;
+
+            if (differenceCoord2 < 0)
+                blockingCell.Coord2 = lastInSequence.Coord2 - 1;
+            else if (differenceCoord2 > 0)
+                blockingCell.Coord2 = lastInSequence.Coord2 + 1;
+            else
+                blockingCell.Coord2 = lastInSequence.Coord2;
+
+            return gameBoard.Board[blockingCell.Coord1][blockingCell.Coord2].Content == blockingCharacter;
+        }
+
+        /// <summary>
+        /// check if movement on <paramref name="position"/> makes/blocks specified number of characters (<paramref name="charactersInRow"/>),
+        /// according to that set <paramref name="priority"/>/<paramref name="blockedPriority"/> of <paramref name="position"/>
         /// </summary>
         /// <param name="position">position of the movement</param>
-        /// <param name="charactersInRow">number of characters in row to look for</param>
+        /// <param name="charactersInRow">number of characters in row to seek</param>
         /// <param name="priority">priority to set if conditions are satisfied</param>
-        /// <param name="character">character to compare with</param>
-        private void Block(Point position, int charactersInRow, int priority, char character)
+        /// <param name="blockedPriority">priority to set if conditions are satisfied, but sequence of characters are blocked from the other side</param>
+        /// <param name="character">character to compare with (X/O), X - check for AI's characters in a row, O - block users characters in a row </param>
+        private void SetPriority(Point position, int charactersInRow, int priority, int blockedPriority, char character)
         {
             int i = position.Coord1;
             int j = position.Coord2;
@@ -96,7 +134,15 @@ namespace Tic_Tac_Toe.Models
                 if (points.TrueForAll(x => gameBoard.IsInBoard(x.Coord1, x.Coord2) &&
                     gameBoard.Board[x.Coord1][x.Coord2].Content == character))
                 {
-                    priorityMap[i, j] += priority;
+                    char oppositeCharacter = (character == 'X') ? 'O' : 'X';
+                    if (IsBlocked(new Point(i, j), points, character, oppositeCharacter))
+                    {
+                        priorityMap[i, j] += blockedPriority;
+                    }
+                    else
+                    {
+                        priorityMap[i, j] += priority;
+                    }
                 }
             }
         }
@@ -107,15 +153,18 @@ namespace Tic_Tac_Toe.Models
         /// <param name="position"></param>if
         private void CountPositionPriority(Point position)
         {
-            Block(position, 4, blockFourPriority, playerCharacter);
-            Block(position, 3, blockThreePriority, playerCharacter);
-            Block(position, 2, blockTwoPriority, playerCharacter);
-            Block(position, 1, blockOnePriority, playerCharacter);
+            // Block opponent's movements
+            SetPriority(position, 4, blockFourPriority, blockFourPriority, playerCharacter);
+            SetPriority(position, 3, blockThreePriority, blockTwoPriority, playerCharacter);
+            SetPriority(position, 2, blockTwoPriority, blockOnePriority, playerCharacter);
+            SetPriority(position, 1, blockOnePriority, 0, playerCharacter); // Block opponent's 1 character in row ->
+                                                                            // AI makes movements in the same area as user
 
-            Block(position, 5, makeFivePriority, botCharacter);
-            Block(position, 4, makeFourPriority, botCharacter);
-            Block(position, 3, makeThreePriority, botCharacter);
-            Block(position, 2, makeTwoPriority, botCharacter);
+            // Make
+            SetPriority(position, 4, makeFivePriority, makeFivePriority, botCharacter);
+            SetPriority(position, 3, makeFourPriority, makeThreePriority, botCharacter);
+            SetPriority(position, 2, makeThreePriority, makeTwoPriority, botCharacter);
+            SetPriority(position, 1, makeTwoPriority, 0, botCharacter);
         }
 
         /// <summary>
