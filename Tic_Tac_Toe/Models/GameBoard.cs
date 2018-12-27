@@ -10,7 +10,7 @@ namespace Tic_Tac_Toe.Models
         /// <summary>
         /// game board
         /// </summary>
-        public ObservableCollection<ObservableCollection<Cell>> Board { get; } = new ObservableCollection<ObservableCollection<Cell>>();
+        public ObservableCollection<ObservableCollection<Cell>> Board { get; set; } = new ObservableCollection<ObservableCollection<Cell>>();
 
         /// <summary>
         /// character of current player
@@ -49,6 +49,8 @@ namespace Tic_Tac_Toe.Models
                 RaisePropertyChanged();
             }
         }
+
+        private Point lastMove;
 
         public GameBoard(int size)
         {
@@ -95,11 +97,12 @@ namespace Tic_Tac_Toe.Models
         /// <param name="coord2">coordinates of field</param>
         public void Place(int coord1, int coord2)
         {
-            if (IsEmpty(coord1,coord2) && Winner == null)
+            if (IsEmpty(coord1, coord2) && Winner == null)
             {
                 Cell selectedCell = Board[coord1][coord2];
                 Board[coord1][coord2] = new Cell(player, selectedCell.Coord1, selectedCell.Coord2);
 
+                lastMove = new Point(coord1, coord2);
                 SwitchPlayers();
                 IsWinner(coord1, coord2);
             }
@@ -243,7 +246,7 @@ namespace Tic_Tac_Toe.Models
         /// <param name="coord1">coord1 of last move</param>
         /// <param name="coord2">coord2 of last move</param>
         /// <returns></returns>
-        public void IsWinner(int coord1, int coord2)
+        private void IsWinner(int coord1, int coord2)
         {
             var winningPositions = GetWinningPositions(coord1, coord2);
 
@@ -269,7 +272,6 @@ namespace Tic_Tac_Toe.Models
                 }
             }
         }
-
     }
 
     public struct Point

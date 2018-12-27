@@ -37,6 +37,7 @@ namespace Tic_Tac_Toe.Views
             {
                 pageVM.GameTimer.StopTimer();
                 WinnerTextBlock.Visibility = Visibility.Visible;
+                return;
             }
             #endregion
 
