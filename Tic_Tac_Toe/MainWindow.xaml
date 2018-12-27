@@ -33,7 +33,7 @@
                 <Button Click="Button_Click" Tag="StartPageVM" Name="QuitGameButton" Visibility="Collapsed">Quit game</Button>
                 <TextBlock/>
                 <TextBlock Style="{StaticResource NormalText}" Name="GameTextBlock" FontWeight="Bold">New Game</TextBlock>
-                <Button Click="Button_Click" Tag="OnePlayerVM" Name="P1Button">1 player</Button>
+                <Button Click="Button_Click" Tag="OnePlayerVM" Name="P1Button" Margin="5">1 player</Button>
                 <Button Click="Button_Click" Tag="TwoPlayerVM" Name="P2Button">2 players</Button>
                 <TextBlock/>
                 <Button Click="EndGameButton_Click">Close App</Button>

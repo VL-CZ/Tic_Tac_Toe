@@ -25,6 +25,8 @@ namespace Tic_Tac_Toe.Models
         /// </summary>
         private readonly char playerCharacter;
 
+        #region Priorities
+
         // priority of movement that makes 5,4,3,2 characters in a row
         private readonly int makeFivePriority = 1000000; // victory
         private readonly int makeFourPriority = 5000;
@@ -37,6 +39,13 @@ namespace Tic_Tac_Toe.Models
         private readonly int blockTwoPriority = 100;
         private readonly int blockOnePriority = 10;
 
+        #endregion
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="game">gameboard</param>
+        /// <param name="botCharacter">has bot X/O character?</param>
         public GameBot(GameBoard game, char botCharacter)
         {
             priorityMap = new int[game.Size, game.Size];
@@ -65,6 +74,7 @@ namespace Tic_Tac_Toe.Models
             differenceCoord1 = lastInSequence.Coord1 - position.Coord1;
             differenceCoord2 = lastInSequence.Coord2 - position.Coord2;
 
+            // get blockingCell position
             if (differenceCoord1 < 0)
                 blockingCell.Coord1 = lastInSequence.Coord1 - 1;
             else if (differenceCoord1 > 0)
