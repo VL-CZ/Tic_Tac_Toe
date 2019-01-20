@@ -89,6 +89,10 @@ namespace Tic_Tac_Toe.Models
             else
                 blockingCell.Coord2 = lastInSequence.Coord2;
 
+            // blocked by edge of the board
+            if (!gameBoard.IsInBoard(blockingCell.Coord1, blockingCell.Coord2))
+                return true;
+
             return gameBoard.Board[blockingCell.Coord1][blockingCell.Coord2].Content == blockingCharacter;
         }
 
@@ -170,7 +174,7 @@ namespace Tic_Tac_Toe.Models
             SetPriority(position, 1, blockOnePriority, 0, playerCharacter); // Block opponent's 1 character in row ->
                                                                             // AI makes movements in the same area as user
 
-            // Make
+            // Make a move
             SetPriority(position, 4, makeFivePriority, makeFivePriority, botCharacter);
             SetPriority(position, 3, makeFourPriority, makeThreePriority, botCharacter);
             SetPriority(position, 2, makeThreePriority, makeTwoPriority, botCharacter);
